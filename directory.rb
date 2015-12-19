@@ -22,8 +22,8 @@ class IthacaDirectoryApp < Sinatra::Base
     people.each do |person|
       people_json << {
         title: person.shift,
-        text: person.join('\n'),
-        color: '#00FF00',
+        text: person.join(' \n'),
+        color: '#004080',
         mrkdwn_in: ["text", "pretext"],
       }
     end
