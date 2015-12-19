@@ -4,25 +4,23 @@ This simple Ruby/Sinatra script allows Slack Slash Command integration with the 
 
 The script parses the HTML of the directory page, and formats the results for Slack.
 
-*Endpoint*
+### Endpoint
 ```
 GET /search&text=NAME
 ```
 
-*Response*
+### Response
 ```json
 {
-text: "1 results found.",
-attachments: [
-{
-title: "Name",
-text: "Information",
-color: "#004080",
-mrkdwn_in: [
-"text"
-]
-}
-]
+  "text": "1 results found.",
+  "attachments": [
+    {
+      "title": "Name",
+      "text": "Information",
+      "color": "#004080",
+      "mrkdwn_in": ["text"]
+    }
+  ]
 }
 
 ```
