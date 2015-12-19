@@ -23,7 +23,7 @@ class IthacaDirectoryApp < Sinatra::Base
       people_json << {
         text: person.join('\n'),
         color: '#00FF00',
-        mrkdwn_in: ['text',
+        mrkdwn_in: ['text'],
       }
     end
     if people.count > 0
