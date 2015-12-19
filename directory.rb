@@ -50,8 +50,8 @@ class IthacaDirectoryApp < Sinatra::Base
     end
   end
 
-  get '/directory' do
-    json search(params['search'])
+  get '/search' do
+    json search(params['text'])
   end
 
 end
