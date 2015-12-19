@@ -12,7 +12,7 @@ class IthacaDirectoryApp < Sinatra::Base
   def parse_person(html)
     output = []
     html.css('tr').each_with_index do |row, idx|
-      output << (idx == 0 ? "*#{row.content}*" : row.css('td').text)
+      output << (idx == 0 ? row.content : row.css('td').text)
     end
     output
   end
@@ -21,9 +21,10 @@ class IthacaDirectoryApp < Sinatra::Base
     people_json = []
     people.each do |person|
       people_json << {
+        title: person.shift,
         text: person.join('\n'),
         color: '#00FF00',
-        mrkdwn_in: ['text'],
+        mrkdwn_in: ["text", "pretext"],
       }
     end
     if people.count > 0
