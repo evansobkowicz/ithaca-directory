@@ -1,10 +1,13 @@
 require 'nokogiri'
 require 'net/http'
 require 'sinatra'
-require "sinatra/json"
-
+require 'sinatra/json'
 
 class IthacaDirectoryApp < Sinatra::Base
+
+  def directory_uri
+    URI.parse('https://www.ithaca.edu/directories/index.php')
+  end
 
   def parse_person(html)
     output = []
@@ -14,8 +17,20 @@ class IthacaDirectoryApp < Sinatra::Base
     output
   end
 
-  def directory_uri
-    URI.parse('https://www.ithaca.edu/directories/index.php')
+  def format_json(people)
+    people_json = []
+    people.each do |person|
+      people_json << {
+        text: person.join('\n'),
+        color: '#00FF00',
+        mrkdwn_in: ['text',
+      }
+    end
+    if people.count > 0
+      { text: "#{people.count} results found.", attachments: people_json }
+    else
+      { text: 'Error: No Results Found' }
+    end
   end
 
   def search_page(name)
@@ -36,18 +51,6 @@ class IthacaDirectoryApp < Sinatra::Base
     result = search_page(name)
     return result[:people] if result[:success]
     { text: result[:error] }
-  end
-
-  def format_json(people)
-    people_json = []
-    people.each do |person|
-      people_json << { text: person.join('\n'), color: '#00FF00' }
-    end
-    if people.count > 0
-      { text: "#{people.count} results found.", attachments: people_json }
-    else
-      { text: 'Error: No Results Found' }
-    end
   end
 
   get '/search' do
