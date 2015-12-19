@@ -12,7 +12,7 @@ class IthacaDirectoryApp < Sinatra::Base
   def parse_person(html)
     output = []
     html.css('tr').each_with_index do |row, idx|
-      output << (idx == 0 ? row.content : row.css('td').text)
+      output << (idx == 0 ? row.content : row.css('td').text.gsub('Ithaca, NY 14850', ''))
     end
     output
   end
