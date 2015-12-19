@@ -23,6 +23,7 @@ class IthacaDirectoryApp < Sinatra::Base
       people_json << {
         title: person.shift,
         text: person.join('<br>'),
+        fields: [{ "" => "value", "" => "other value"  }],
         color: '#004080',
         mrkdwn_in: ["text", "pretext"],
       }
