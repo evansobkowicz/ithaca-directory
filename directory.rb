@@ -22,10 +22,9 @@ class IthacaDirectoryApp < Sinatra::Base
     people.each do |person|
       people_json << {
         title: person.shift,
-        text: person.join('<br>'),
-        fields: [{ "" => "value", "" => "other value"  }],
+        text: person.join("\n"),
         color: '#004080',
-        mrkdwn_in: ["text", "pretext"],
+        mrkdwn_in: ['text'],
       }
     end
     if people.count > 0
