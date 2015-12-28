@@ -6,7 +6,7 @@ The script parses the HTML of the directory page, and formats the results for Sl
 
 ### Endpoint
 ```
-GET /search&text=NAME
+GET /search/?text=NAME
 ```
 
 ### Response
